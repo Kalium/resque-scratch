@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  validates :title, presence: true
+
   after_initialize do
     logger.debug("after_initialize")
   end
