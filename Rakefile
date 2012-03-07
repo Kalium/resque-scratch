@@ -5,3 +5,13 @@
 require File.expand_path('../config/application', __FILE__)
 
 ResqueApp::Application.load_tasks
+
+namespace :resque do
+  task :load_worker => :environmemt do
+    require 'worker/jobs'
+  end
+
+  task :work => :load_worker
+end
+
+require 'resque/tasks'
