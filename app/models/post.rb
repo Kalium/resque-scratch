@@ -2,8 +2,11 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
 
   after_initialize do
-    self.title = "My Default Title"
     logger.debug("after_initialize")
+    if(self.new_record?)
+      logger.debug("after_initialize>new_record")
+      self.title = "My Default Title" if(self.title.blank?)
+    end
   end
 
   before_validation do
