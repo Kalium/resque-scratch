@@ -1,4 +1,6 @@
 ResqueApp::Application.routes.draw do
+  mount Resque::Server => '/resque'
+
   resources :posts
 
   # The priority is based upon order of creation:
