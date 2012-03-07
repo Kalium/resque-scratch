@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
+gem 'foreman', require: false
+gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'mysql2', '>=0.3.2'
 
 gem 'json'
 
@@ -20,11 +22,10 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
 gem 'jquery-rails'
-gem 'foreman', require: false
-gem 'thin'
+
 gem 'resque'
+gem 'ar_after_transaction'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
