@@ -16,19 +16,20 @@
     <%= f.text_area :title %>
   </div>
 
-  <% f.fields_for :comments do |comment_form| %>
-    <div class="field">
-      <%= comment_form.label :body %>
-      <%= comment_form.text_field :body %>
+  <%= f.fields_for(:comments) do |comment_form| %>
+    <div style="border: 1px solid black">
+      <div class="field">
+        <%= comment_form.label :body %>
+        <%= comment_form.text_field :body %>
+      </div>
+
+      <% unless comment_form.object.new_record? %>
+        <%= comment_form.check_box '_destroy' %>
+        <%= comment_form.label '_destroy', 'Remove' %>
+      <% end %>
     </div>
-
-    <% unless comment_form.object.new_record? %>
-      <%= comment_form.check_box '_destroy' %>
-      <%= comment_form.label '_destroy', 'Remove' %>
-    <% end %>
-
+    <br/>
   <% end %>
-
 
   <div class="actions">
     <%= f.submit %>
