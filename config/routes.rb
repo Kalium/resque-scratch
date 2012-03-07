@@ -1,4 +1,6 @@
 ResqueApp::Application.routes.draw do
+  resources :comments
+
   mount Resque::Server => '/resque'
 
   resources :posts

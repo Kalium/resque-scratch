@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   validates :title, presence: true
+  has_many :comments
 
   after_initialize do
     logger.debug("after_initialize")
