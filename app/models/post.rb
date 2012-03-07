@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   has_many :comments
 
+  accepts_nested_attributes_for :comments, allow_destroy: true
+
   after_initialize do
     logger.debug("after_initialize")
     if(self.new_record?)

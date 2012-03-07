@@ -1,4 +1,4 @@
-<%= form_for(@post) do |f| %>
+<%= form_for(with_new_comment_for(@post)) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -15,6 +15,21 @@
     <%= f.label :title %><br />
     <%= f.text_area :title %>
   </div>
+
+  <% f.fields_for :comments do |comment_form| %>
+    <div class="field">
+      <%= comment_form.label :body %>
+      <%= comment_form.text_field :body %>
+    </div>
+
+    <% unless comment_form.object.new_record? %>
+      <%= comment_form.check_box '_destroy' %>
+      <%= comment_form.label '_destroy', 'Remove' %>
+    <% end %>
+
+  <% end %>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
