@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   has_many :comments
 
+  validates_associated :comments
   accepts_nested_attributes_for :comments, allow_destroy: true
 
   after_initialize do
