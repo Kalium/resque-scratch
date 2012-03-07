@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   end
 
   before_validation do
-    logger.debug("before_validation")
+    logger.debug("before_validation: #{self.changed_attributes.keys}")
   end
   after_validation do
     logger.debug("after_validation")
@@ -26,6 +26,10 @@ class Post < ActiveRecord::Base
 
   before_save do
     logger.debug("before_save")
+    if(self.changed_attributes.include?("title"))
+      logger.debug("before_save>changed_attributes['title']")
+      self.title = self.title + " 012345" unless(self.title =~ /\d+$/)
+    end
   end
   after_save do
     logger.debug("after_save")
