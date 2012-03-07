@@ -8,7 +8,7 @@ ResqueApp::Application.load_tasks
 
 namespace :resque do
   task :load_worker => :environment do
-    require 'worker/jobs'
+    require './worker/jobs'
   end
 
   task :work => :load_worker
